@@ -1,0 +1,31 @@
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+
+install:
+  -    wget --no-check-certificate https://cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz
+    && tar -xzf cmake-3.3.2-Linux-x86_64.tar.gz
+    && mv cmake-3.3.2-Linux-x86_64 cmake-3.3.2
+    ;
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
+  - echo ${CXX}
+  - ${CXX} --version
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.9
+    - g++-4.9
+    - clang
+
+script:
+  - mkdir -p build/
+  - cd build/
+  - ../cmake-3.3.2/bin/cmake ..
+  - make
+  - make kmnd_tests
+  - ./tests/kmnd_tests
