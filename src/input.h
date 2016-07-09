@@ -39,7 +39,10 @@ struct kmnd_input_s {
     kmnd_flags_t flags;
     kmnd_validator_cb *validator;
 
-    char *value;
+    char **values;
+    size_t num_values;
+
+    size_t num_returned;
 };
 
 int kmnd_input_activate(kmnd_input_t *input, kmnd_t *kmnd, const char *string);

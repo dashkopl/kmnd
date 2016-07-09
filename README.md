@@ -1,4 +1,4 @@
-# Kmnd [![Build status](https://travis-ci.org/timvanelsloo/kmnd.svg?branch=master)](https://travis-ci.org/timvanelsloo/kmnd)
+# Kmnd [![Build status](https://travis-ci.org/elslooo/kmnd.svg?branch=develop)](https://travis-ci.org/elslooo/kmnd)
 
 Kmnd is a library in C for creating beautiful, colorful and consistent Command
 Line Interfaces (CLIs). Kmnd runs on Mac OS X and Linux and has zero

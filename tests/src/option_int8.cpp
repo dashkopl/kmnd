@@ -24,11 +24,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionInt8Fixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int8 option. */
     kmnd_t *int8 = kmnd_int8_new('i', "int8", "This is a int8.",
                                  KMND_FLAGS_REQUIRED, 0);
@@ -43,13 +39,9 @@ TEST(OptionInt8Fixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(int8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt8Fixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int8 option. */
     kmnd_t *int8 = kmnd_int8_new('i', "int8", "This is a int8.",
                                  KMND_FLAGS_REQUIRED, -50);
@@ -59,13 +51,9 @@ TEST(OptionInt8Fixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(int8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt8Fixture, ParseMin) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int8 option. */
     kmnd_t *int8 = kmnd_int8_new('i', "int8", "This is a int8.",
                                  KMND_FLAGS_REQUIRED, -50);
@@ -78,13 +66,9 @@ TEST(OptionInt8Fixture, ParseMin) {
 
     /* Free the option. */
     kmnd_free(int8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt8Fixture, ParseMax) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int8 option. */
     kmnd_t *int8 = kmnd_int8_new('i', "int8", "This is a int8.",
                                  KMND_FLAGS_REQUIRED, -50);
@@ -97,8 +81,6 @@ TEST(OptionInt8Fixture, ParseMax) {
 
     /* Free the option. */
     kmnd_free(int8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt8Fixture, ParseUnderflow) {

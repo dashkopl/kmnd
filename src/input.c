@@ -51,9 +51,29 @@ int kmnd_input_activate(kmnd_input_t *input, kmnd_t *kmnd, const char *string) {
     if (res != 0)
         return res;
 
-    assert(input->value == NULL);
+    if (input->flags != KMND_FLAGS_MULTIPLE)
+        assert(input->values == NULL);
+
     assert(string != NULL);
-    input->value = strdup(string);
+
+    char *value = strdup(string);
+
+    if (value == NULL)
+        return -1;
+
+    const size_t num = input->num_values + 1;
+    char **values    = realloc(input->values, num * sizeof(char *));
+
+    if (values == NULL) {
+        free(value);
+
+        return -1;
+    }
+
+    values[num - 1] = value;
+
+    input->values     = values;
+    input->num_values = num;
 
     return 0;
 }
@@ -63,11 +83,15 @@ unsigned char kmnd_input_required(const kmnd_input_t *input) {
 }
 
 unsigned char kmnd_input_activated(const kmnd_input_t *input) {
-    return (unsigned char) (input->value != NULL);
+    return (unsigned char) (input->values != NULL);
 }
 
 void kmnd_input_free(kmnd_input_t *input) {
-    free(input->value); input->value = NULL;
+    size_t i;
+    for (i = 0; i < input->num_values; i ++)
+        free(input->values[i]);
+    free(input->values);
+
     memset(input, 0, sizeof(kmnd_input_t));
     free(input);
 }
@@ -78,5 +102,8 @@ const char *kmnd_input_get(kmnd_t *kmnd, const char *path) {
     if (input == NULL)
         return NULL;
 
-    return input->value;
+    if (input->num_returned >= input->num_values)
+        return NULL;
+
+    return input->values[input->num_returned ++];
 }

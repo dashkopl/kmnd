@@ -24,11 +24,7 @@
 
 #include "../../src/path.h"
 
-#include "malloc.h"
-
 TEST(PathFixture, Root) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new string option. */
     kmnd_t *string = kmnd_string_new('s', "string", "This is a string.",
                                      KMND_FLAGS_NONE, "foobar");
@@ -43,6 +39,4 @@ TEST(PathFixture, Root) {
 
     /* Free the string option. */
     kmnd_free(string);
-
-    KMND_MEM_LEAK_POST();
 }

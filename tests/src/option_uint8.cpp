@@ -24,11 +24,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionUint8Fixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint8 option. */
     kmnd_t *uint8 = kmnd_uint8_new('i', "uint8", "This is a uint8.",
                                    KMND_FLAGS_REQUIRED, 0);
@@ -43,13 +39,9 @@ TEST(OptionUint8Fixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(uint8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint8Fixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint8 option. */
     kmnd_t *uint8 = kmnd_uint8_new('i', "uint8", "This is a uint8.",
                                    KMND_FLAGS_REQUIRED, 7);
@@ -61,13 +53,9 @@ TEST(OptionUint8Fixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(uint8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint8Fixture, ParseMin) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint8 option. */
     kmnd_t *uint8 = kmnd_uint8_new('i', "uint8", "This is a uint8.",
                                    KMND_FLAGS_REQUIRED, 7);
@@ -80,13 +68,9 @@ TEST(OptionUint8Fixture, ParseMin) {
 
     /* Free the option. */
     kmnd_free(uint8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint8Fixture, ParseMax) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint8 option. */
     kmnd_t *uint8 = kmnd_uint8_new('i', "uint8", "This is a uint8.",
                                    KMND_FLAGS_REQUIRED, 7);
@@ -99,8 +83,6 @@ TEST(OptionUint8Fixture, ParseMax) {
 
     /* Free the option. */
     kmnd_free(uint8);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint8Fixture, ParseUnderflow) {

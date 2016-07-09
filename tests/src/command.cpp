@@ -24,8 +24,6 @@
 
 #include "../../src/command.h"
 
-#include "malloc.h"
-
 static int kmnd_test_run_called = 0;
 
 static int kmnd_test_run(kmnd_t *kmnd) {
@@ -35,8 +33,6 @@ static int kmnd_test_run(kmnd_t *kmnd) {
 }
 
 TEST(CommandFixture, NoChildren) {
-    KMND_MEM_LEAK_PRE();
-
     kmnd_command_t *kmnd = (kmnd_command_t *) kmnd_new("foobar", "This is the "
                                                        "description of foobar.",
                                                        kmnd_test_run, NULL);
@@ -46,13 +42,9 @@ TEST(CommandFixture, NoChildren) {
     EXPECT_TRUE(kmnd_test_run == kmnd->run);
 
     kmnd_free((kmnd_t *) kmnd);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(CommandFixture, BooleanOptions) {
-    KMND_MEM_LEAK_PRE();
-
     kmnd_test_run_called = 0;
 
     kmnd_t *foo = kmnd_boolean_new('f', "foo", "This is foo.",
@@ -72,13 +64,9 @@ TEST(CommandFixture, BooleanOptions) {
     EXPECT_EQ(1, kmnd_test_run_called);
 
     kmnd_free(kmnd);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(CommandFixture, StringOptions) {
-    KMND_MEM_LEAK_PRE();
-
     kmnd_test_run_called = 0;
 
     kmnd_t *foo = kmnd_boolean_new('f', "foo", "This is foo.",
@@ -97,8 +85,6 @@ TEST(CommandFixture, StringOptions) {
     EXPECT_EQ(1, kmnd_test_run_called);
 
     kmnd_free(kmnd);
-
-    KMND_MEM_LEAK_POST();
 }
 
 static int kmnd_test_subcommand_run_called = 0;
@@ -110,8 +96,6 @@ static int kmnd_test_subcommand_run(kmnd_t *kmnd) {
 }
 
 TEST(CommandFixture, Subcommands) {
-    KMND_MEM_LEAK_PRE();
-
     kmnd_test_run_called = 0;
     kmnd_test_subcommand_run_called = 0;
 
@@ -134,6 +118,4 @@ TEST(CommandFixture, Subcommands) {
     EXPECT_EQ(0, kmnd_test_run_called);
 
     kmnd_free(kmnd);
-
-    KMND_MEM_LEAK_POST();
 }

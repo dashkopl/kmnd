@@ -1,0 +1,23 @@
+name:        kmnd
+description: Kmnd is a library in C for creating beautiful, colorful and
+             consistent Command Line Interfaces (CLIs). Kmnd runs on Mac OS X
+             and Linux and has zero dependencies.
+version:     0.0.1
+
+targets:
+    kmnd:
+        type:  library
+        files: src/*.{c,h}
+    check:
+        always: no
+        files:  tests/src/*.cpp
+        libraries:
+            - target:   kmnd
+            - git:      google/googletest
+              install:
+              includes: ${SOURCE_DIR}/googletest/include
+              files:
+                  - ${BINARY_DIR}/googlemock/gtest/libgtest.a
+                  - ${BINARY_DIR}/googlemock/gtest/libgtest_main.a
+            - system: pthread
+            - system: dl

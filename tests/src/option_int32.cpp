@@ -24,11 +24,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionInt32Fixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int32 option. */
     kmnd_t *int32 = kmnd_int32_new('i', "int32", "This is a int32.",
                                    KMND_FLAGS_REQUIRED, 0);
@@ -43,13 +39,9 @@ TEST(OptionInt32Fixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(int32);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt32Fixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int32 option. */
     kmnd_t *int32 = kmnd_int32_new('i', "int32", "This is a int32.",
                                    KMND_FLAGS_REQUIRED, -32769);
@@ -61,13 +53,9 @@ TEST(OptionInt32Fixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(int32);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt32Fixture, ParseMin) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int32 option. */
     kmnd_t *int32 = kmnd_int32_new('i', "int32", "This is a int32.",
                                    KMND_FLAGS_REQUIRED, -32769);
@@ -80,13 +68,9 @@ TEST(OptionInt32Fixture, ParseMin) {
 
     /* Free the option. */
     kmnd_free(int32);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt32Fixture, ParseMax) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int32 option. */
     kmnd_t *int32 = kmnd_int32_new('i', "int32", "This is a int32.",
                                    KMND_FLAGS_REQUIRED, -32769);
@@ -99,8 +83,6 @@ TEST(OptionInt32Fixture, ParseMax) {
 
     /* Free the option. */
     kmnd_free(int32);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt32Fixture, ParseUnderflow) {

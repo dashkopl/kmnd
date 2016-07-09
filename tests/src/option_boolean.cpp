@@ -24,11 +24,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionBooleanFixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_REQUIRED, 0);
@@ -43,13 +39,9 @@ TEST(OptionBooleanFixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, DefaultValueFalse) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 0);
@@ -59,13 +51,9 @@ TEST(OptionBooleanFixture, DefaultValueFalse) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, DefaultValueTrue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Again, create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 1);
@@ -75,13 +63,9 @@ TEST(OptionBooleanFixture, DefaultValueTrue) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseFalseOff) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 1);
@@ -94,13 +78,9 @@ TEST(OptionBooleanFixture, ParseFalseOff) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseFalseFalse) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 1);
@@ -113,13 +93,9 @@ TEST(OptionBooleanFixture, ParseFalseFalse) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseFalseNo) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 1);
@@ -132,13 +108,9 @@ TEST(OptionBooleanFixture, ParseFalseNo) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseFalse0) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 1);
@@ -151,13 +123,9 @@ TEST(OptionBooleanFixture, ParseFalse0) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseTrueOn) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 0);
@@ -170,13 +138,9 @@ TEST(OptionBooleanFixture, ParseTrueOn) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseTrueTrue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 0);
@@ -189,13 +153,9 @@ TEST(OptionBooleanFixture, ParseTrueTrue) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseFalseYes) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 1);
@@ -208,13 +168,9 @@ TEST(OptionBooleanFixture, ParseFalseYes) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, ParseTrue1) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 0);
@@ -227,13 +183,9 @@ TEST(OptionBooleanFixture, ParseTrue1) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionBooleanFixture, Flag) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 0);
@@ -245,16 +197,12 @@ TEST(OptionBooleanFixture, Flag) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    KMND_MEM_LEAK_POST();
 }
 
 /*
  * Every boolean option should be memsetted to 0 when freed.
  */
 TEST(OptionBooleanFixture, Free) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *boolean = kmnd_boolean_new('b', "boolean", "This is a boolean.",
                                        KMND_FLAGS_NONE, 0);
@@ -264,9 +212,4 @@ TEST(OptionBooleanFixture, Free) {
 
     /* Free the option. */
     kmnd_free(boolean);
-
-    /* Check if it is freed. */
-    EXPECT_FALSE(kmnd_mem_valid(boolean));
-
-    KMND_MEM_LEAK_POST();
 }

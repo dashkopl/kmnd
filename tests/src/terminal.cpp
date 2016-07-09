@@ -24,14 +24,10 @@
 
 #include "../../src/terminal.h"
 
-#include "malloc.h"
-
 /*
  * The _default function should return a terminal with fd=stdout.
  */
 TEST(TerminalFixture, DefaultFD) {
-    KMND_MEM_LEAK_PRE();
-
     /* Get the default terminal. */
     kmnd_terminal_t *terminal = kmnd_terminal_new_default();
 
@@ -40,8 +36,6 @@ TEST(TerminalFixture, DefaultFD) {
 
     /* Free the terminal. */
     kmnd_terminal_free(terminal);
-
-    KMND_MEM_LEAK_POST();
 }
 
 /*
@@ -49,8 +43,6 @@ TEST(TerminalFixture, DefaultFD) {
  * file descriptor.
  */
 TEST(TerminalFixture, CustomFD) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new terminal. */
     kmnd_terminal_t *terminal = kmnd_terminal_new(STDERR_FILENO);
 
@@ -59,39 +51,26 @@ TEST(TerminalFixture, CustomFD) {
 
     /* Free the terminal. */
     kmnd_terminal_free(terminal);
-
-    KMND_MEM_LEAK_POST();
 }
 
 /*
  * Creating a new terminal should fail when passing an invalid file descriptor.
  */
 TEST(TerminalFixture, InvalidFD) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new terminal. */
     kmnd_terminal_t *terminal = kmnd_terminal_new(-1);
 
     /* Make sure that no terminal is returned. */
     EXPECT_EQ(NULL, terminal);
-
-    KMND_MEM_LEAK_POST();
 }
 
 /*
  * Every terminal should be memsetted to 0 when freed.
  */
 TEST(TerminalFixture, Free) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new terminal. */
     kmnd_terminal_t *terminal = kmnd_terminal_new(STDERR_FILENO);
 
     /* Try to free the terminal. */
     kmnd_terminal_free(terminal);
-
-    /* Check if it is freed. */
-    EXPECT_FALSE(kmnd_mem_valid(terminal));
-
-    KMND_MEM_LEAK_POST();
 }

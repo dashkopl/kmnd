@@ -25,11 +25,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionDoubleFixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new double option. */
     kmnd_t *f = kmnd_double_new('d', "double", "This is a double.",
                                 KMND_FLAGS_REQUIRED, 0);
@@ -44,13 +40,9 @@ TEST(OptionDoubleFixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionDoubleFixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new double option. */
     kmnd_t *f = kmnd_double_new('d', "double", "This is a double.",
                                 KMND_FLAGS_REQUIRED, -37.827281689071f);
@@ -60,13 +52,9 @@ TEST(OptionDoubleFixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionDoubleFixture, Simple) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new double option. */
     kmnd_t *f = kmnd_double_new('d', "double", "This is a double.",
                                 KMND_FLAGS_REQUIRED, 0);
@@ -79,13 +67,9 @@ TEST(OptionDoubleFixture, Simple) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionDoubleFixture, Hex) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new double option. */
     kmnd_t *f = kmnd_double_new('d', "double", "This is a double.",
                                 KMND_FLAGS_REQUIRED, 0);
@@ -98,13 +82,9 @@ TEST(OptionDoubleFixture, Hex) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionDoubleFixture, Infinity) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new double option. */
     kmnd_t *f = kmnd_double_new('d', "double", "This is a double.",
                                 KMND_FLAGS_REQUIRED, 0);
@@ -117,8 +97,6 @@ TEST(OptionDoubleFixture, Infinity) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 /* Precision is platform dependent(?) so unit tests are not yet included. */

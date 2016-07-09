@@ -24,15 +24,11 @@
 
 #include "../../src/input.h"
 
-#include "malloc.h"
-
 static int validator(kmnd_t *kmnd, const char *string) {
     return 0;
 }
 
 TEST(InputFixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     kmnd_t *kmnd = kmnd_input_new("foobar", "This is foobar",
                                   KMND_FLAGS_REQUIRED, validator);
 
@@ -46,13 +42,9 @@ TEST(InputFixture, NameDescriptionFlags) {
     EXPECT_EQ(1, kmnd_input_required(input));
 
     kmnd_free(kmnd);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(InputFixture, Activate) {
-    KMND_MEM_LEAK_PRE();
-
     kmnd_t *kmnd = kmnd_input_new("foobar", "This is foobar",
                                   KMND_FLAGS_REQUIRED, validator);
 
@@ -65,8 +57,6 @@ TEST(InputFixture, Activate) {
     EXPECT_STREQ("seafood", kmnd_input_get(kmnd, NULL));
 
     kmnd_free(kmnd);
-
-    KMND_MEM_LEAK_POST();
 }
 
 static int validator_fail(kmnd_t *kmnd, const char *string) {
@@ -74,8 +64,6 @@ static int validator_fail(kmnd_t *kmnd, const char *string) {
 }
 
 TEST(InputFixture, ActivateFail) {
-    KMND_MEM_LEAK_PRE();
-
     kmnd_t *kmnd = kmnd_input_new("foobar", "This is foobar",
                                   KMND_FLAGS_REQUIRED, validator_fail);
 
@@ -88,6 +76,4 @@ TEST(InputFixture, ActivateFail) {
     EXPECT_TRUE(NULL == kmnd_input_get(kmnd, NULL));
 
     kmnd_free(kmnd);
-
-    KMND_MEM_LEAK_POST();
 }

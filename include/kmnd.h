@@ -36,7 +36,20 @@ typedef int (kmnd_run_cb)(kmnd_t *kmnd);
 typedef enum kmnd_flags_e {
     KMND_FLAGS_NONE     = 0,
     KMND_FLAGS_REQUIRED = (1 << 0),
+    KMND_FLAGS_MULTIPLE = (1 << 1),
 } kmnd_flags_t;
+
+typedef enum kmnd_log_level_e {
+    KMND_LOG_LEVEL_VERBOSE = 0,
+
+    KMND_LOG_LEVEL_INFO    = 1,
+
+    KMND_LOG_LEVEL_WARNING = 2,
+
+    KMND_LOG_LEVEL_ERROR   = 3,
+
+    KMND_LOG_LEVEL_FATAL   = 4,
+} kmnd_log_level_t;
 
 /**
  * This function creates a new kmnd. This can be either the root command or a
@@ -193,6 +206,26 @@ kmnd_t *kmnd_double_new(const char character, const char *name,
  */
 float kmnd_float_get(kmnd_t *kmnd, const char *path);
 double kmnd_double_get(kmnd_t *kmnd, const char *path);
+
+/**
+ * LOGGING
+ */
+
+/**
+ * This function prints the given format and arguments to either stdout or
+ * stderr based on the given log level. It will also attempt to output in
+ * colour.
+ */
+void kmnd_log(kmnd_t *kmnd, const kmnd_log_level_t level,
+              const char *format, ...);
+
+/**
+ * This function calls `kmnd_log` with `KMND_LOG_LEVEL_FATAL` and then aborts.
+ * If the global `errno` is set, it will also try to transform it into a helpful
+ * string and append it to the error message.
+ */
+void __attribute__((noreturn)) kmnd_abort(kmnd_t *kmnd,
+                                          const char *format, ...);
 
 #ifdef __cplusplus
 }

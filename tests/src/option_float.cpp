@@ -25,11 +25,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionFloatFixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new float option. */
     kmnd_t *f = kmnd_float_new('f', "float", "This is a float.",
                                KMND_FLAGS_REQUIRED, 0);
@@ -44,13 +40,9 @@ TEST(OptionFloatFixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionFloatFixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new float option. */
     kmnd_t *f = kmnd_float_new('f', "float", "This is a float.",
                                KMND_FLAGS_REQUIRED, -37.827281689071f);
@@ -60,13 +52,9 @@ TEST(OptionFloatFixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionFloatFixture, Simple) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new float option. */
     kmnd_t *f = kmnd_float_new('f', "float", "This is a float.",
                                KMND_FLAGS_REQUIRED, 0);
@@ -79,13 +67,9 @@ TEST(OptionFloatFixture, Simple) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionFloatFixture, Hex) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new float option. */
     kmnd_t *f = kmnd_float_new('f', "float", "This is a float.",
                                KMND_FLAGS_REQUIRED, 0);
@@ -98,13 +82,9 @@ TEST(OptionFloatFixture, Hex) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionFloatFixture, Infinity) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new float option. */
     kmnd_t *f = kmnd_float_new('f', "float", "This is a float.",
                                KMND_FLAGS_REQUIRED, 0);
@@ -117,8 +97,6 @@ TEST(OptionFloatFixture, Infinity) {
 
     /* Free the option. */
     kmnd_free(f);
-
-    KMND_MEM_LEAK_POST();
 }
 
 /* Precision is platform dependent(?) so unit tests are not yet included. */

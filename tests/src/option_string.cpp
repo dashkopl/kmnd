@@ -24,11 +24,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionStringFixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new boolean option. */
     kmnd_t *string = kmnd_boolean_new('s', "string", "This is a string.",
                                       KMND_FLAGS_REQUIRED, 0);
@@ -43,13 +39,9 @@ TEST(OptionStringFixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(string);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionStringFixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new string option. */
     kmnd_t *string = kmnd_string_new('s', "string", "This is a string.",
                                      KMND_FLAGS_NONE, "foobar");
@@ -59,13 +51,9 @@ TEST(OptionStringFixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(string);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionStringFixture, Parse) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new string option. */
     kmnd_t *string = kmnd_string_new('s', "string", "This is a string.",
                                      KMND_FLAGS_NONE, "foobar");
@@ -80,16 +68,12 @@ TEST(OptionStringFixture, Parse) {
 
     /* Free the option. */
     kmnd_free(string);
-
-    KMND_MEM_LEAK_POST();
 }
 
 /*
  * Every string option should be memsetted to 0 when freed.
  */
 TEST(OptionStringFixture, Free) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new string option. */
     kmnd_t *string = kmnd_string_new('s', "string", "This is a string.",
                                      KMND_FLAGS_NONE, "foobar");
@@ -101,9 +85,4 @@ TEST(OptionStringFixture, Free) {
 
     /* Free the option. */
     kmnd_free(string);
-
-    /* Check if it is freed. */
-    EXPECT_FALSE(kmnd_mem_valid(string));
-
-    KMND_MEM_LEAK_POST();
 }

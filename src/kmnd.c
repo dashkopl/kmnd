@@ -21,9 +21,10 @@
  */
 
 #include <assert.h>
+#include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 #include "command.h"
 #include "error.h"
@@ -39,13 +40,24 @@ void kmnd_free(kmnd_t *kmnd) {
         kmnd_command_t *command = (kmnd_command_t *) kmnd;
 
         size_t i;
-        for (i = 0; i < command->num_options; i ++)
-            kmnd_option_free(command->options[i]);
-
         for (i = 0; i < command->num_commands; i ++)
             kmnd_free((kmnd_t *) command->commands[i]);
 
+        for (i = 0; i < command->num_inputs; i ++)
+            kmnd_free((kmnd_t *) command->inputs[i]);
+
+        for (i = 0; i < command->num_options; i ++)
+            kmnd_option_free(command->options[i]);
+
+        free(command->commands);
+        free(command->inputs);
+        free(command->options);
+
+        if (command->usage != NULL)
+            kmnd_free((kmnd_t *) command->usage);
+
         kmnd_terminal_free(command->terminal);
+
         free(command);
     }
 }
@@ -172,7 +184,11 @@ int kmnd_run(kmnd_t *kmnd, const int argc, const char **argv) {
 
                 if (res == 0) {
                     is_input = 1;
-                    input ++;
+
+                    const kmnd_flags_t flag = KMND_FLAGS_MULTIPLE;
+                    if ((inp->flags & flag) != flag)
+                        input ++;
+
                     break;
                 }else if (res == -1 &&
                           kmnd_input_required(command->inputs[input]) == 1) {
@@ -249,4 +265,3 @@ int kmnd_run(kmnd_t *kmnd, const int argc, const char **argv) {
 
     return 0;
 }
-

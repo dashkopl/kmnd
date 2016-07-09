@@ -24,11 +24,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionUint16Fixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint16 option. */
     kmnd_t *uint16 = kmnd_uint16_new('i', "uint16", "This is a uint16.",
                                      KMND_FLAGS_REQUIRED, 904);
@@ -43,13 +39,9 @@ TEST(OptionUint16Fixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(uint16);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint16Fixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint16 option. */
     kmnd_t *uint16 = kmnd_uint16_new('i', "uint16", "This is a uint16.",
                                      KMND_FLAGS_REQUIRED, 904);
@@ -61,13 +53,9 @@ TEST(OptionUint16Fixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(uint16);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint16Fixture, ParseMin) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint16 option. */
     kmnd_t *uint16 = kmnd_uint16_new('i', "uint16", "This is a uint16.",
                                      KMND_FLAGS_REQUIRED, 904);
@@ -80,13 +68,9 @@ TEST(OptionUint16Fixture, ParseMin) {
 
     /* Free the option. */
     kmnd_free(uint16);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint16Fixture, ParseMax) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new uint16 option. */
     kmnd_t *uint16 = kmnd_uint16_new('i', "uint16", "This is a uint16.",
                                      KMND_FLAGS_REQUIRED, 904);
@@ -99,8 +83,6 @@ TEST(OptionUint16Fixture, ParseMax) {
 
     /* Free the option. */
     kmnd_free(uint16);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionUint16Fixture, ParseUnderflow) {

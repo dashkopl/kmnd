@@ -24,11 +24,7 @@
 
 #include "../../src/option.h"
 
-#include "malloc.h"
-
 TEST(OptionInt64Fixture, NameDescriptionFlags) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int64 option. */
     kmnd_t *int64 = kmnd_int64_new('i', "int64", "This is a int64.",
                                    KMND_FLAGS_REQUIRED, 0);
@@ -43,13 +39,9 @@ TEST(OptionInt64Fixture, NameDescriptionFlags) {
 
     /* Free the option. */
     kmnd_free(int64);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt64Fixture, DefaultValue) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int64 option. */
     kmnd_t *int64 = kmnd_int64_new('i', "int64", "This is a int64.",
                                    KMND_FLAGS_REQUIRED, -2147483649);
@@ -61,13 +53,9 @@ TEST(OptionInt64Fixture, DefaultValue) {
 
     /* Free the option. */
     kmnd_free(int64);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt64Fixture, ParseMin) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int64 option. */
     kmnd_t *int64 = kmnd_int64_new('i', "int64", "This is a int64.",
                                    KMND_FLAGS_REQUIRED, -2147483649);
@@ -84,13 +72,9 @@ TEST(OptionInt64Fixture, ParseMin) {
 
     /* Free the option. */
     kmnd_free(int64);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt64Fixture, ParseMax) {
-    KMND_MEM_LEAK_PRE();
-
     /* Create a new int64 option. */
     kmnd_t *int64 = kmnd_int64_new('i', "int64", "This is a int64.",
                                    KMND_FLAGS_REQUIRED, -2147483649);
@@ -104,8 +88,6 @@ TEST(OptionInt64Fixture, ParseMax) {
 
     /* Free the option. */
     kmnd_free(int64);
-
-    KMND_MEM_LEAK_POST();
 }
 
 TEST(OptionInt64Fixture, ParseUnderflow) {

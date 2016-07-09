@@ -37,8 +37,8 @@ kmnd_t *kmnd_usage_new(const char *command, const char *description) {
 
     memset(usage, 0, sizeof(kmnd_usage_t));
 
-    usage->core.type = KMND_TYPE_USAGE;
-    usage->command = command;
+    usage->core.type   = KMND_TYPE_USAGE;
+    usage->command     = command;
     usage->description = description;
 
     return (kmnd_t *) usage;
